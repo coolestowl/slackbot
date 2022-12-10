@@ -25,7 +25,10 @@ fn interactivity(data: String) -> Json<Resp> {
 #[derive(Deserialize, Debug)]
 struct ChallengeReq {
     token: String,
+
     challenge: String,
+
+    #[serde(rename(serialize = "type", deserialize = "type"))]
     tp: String,
 }
 
