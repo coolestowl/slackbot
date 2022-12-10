@@ -10,7 +10,7 @@ fn index() -> &'static str {
 #[derive(Serialize)]
 struct Resp {
     msg: String,
-    chanllenge: String,
+    challenge: String,
 }
 
 #[post("/interactivity", data = "<data>")]
@@ -18,26 +18,26 @@ fn interactivity(data: String) -> Json<Resp> {
     println!("rcv: {}", data);
     Json(Resp {
         msg: "ok".into(),
-        chanllenge: "".into(),
+        challenge: "".into(),
     })
 }
 
 #[derive(Deserialize, Debug)]
-struct ChanllengeReq {
+struct ChallengeReq {
     token: String,
-    chanllenge: String,
+    challenge: String,
     tp: String,
 }
 
 #[post("/event", data = "<req>")]
-fn event(req: Json<ChanllengeReq>) -> Json<Resp> {
+fn event(req: Json<ChallengeReq>) -> Json<Resp> {
     println!("evt: {:?}", req);
 
-    let data = req.chanllenge.clone();
+    let data = req.challenge.clone();
 
     Json(Resp {
         msg: "ok".into(),
-        chanllenge: data,
+        challenge: data,
     })
 }
 
@@ -46,7 +46,7 @@ fn vul(data: String) -> Json<Resp> {
     println!("vul: {}", data);
     Json(Resp {
         msg: "ok".into(),
-        chanllenge: "".into(),
+        challenge: "".into(),
     })
 }
 
